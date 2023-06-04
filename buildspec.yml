@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - curl -O https://storage.googleapis.com/golang/go1.14.3.linux-amd64.tar.gz
+      - tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+      - export PATH=$PATH:/usr/local/go/bin
+      - export GOOS=linux
+      - export GOROOT=$GOPATH
+      - go version
+      - go get -u github.com/ahmdrz/goinsta
+      - ls
+  pre_build:
+    commands:
+      - echo Nothing to do in build phase.
+  build:
+    commands:
+      - printenv
+      - export GOOS=linux
+      - go build -o $GOPATH/haip-instagram-api
+  post_build:
+    commands:
+      - echo Nothing to do in build phase.
+artifacts:
+  files:
+    - haip-instagram-api
+  name: haip-instagram-api-master-$(date +%Y-%m-%d-%H:%M:%S)
+      
